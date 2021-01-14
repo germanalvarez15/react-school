@@ -41,7 +41,7 @@ let itemsHeader = [
  },
 ];
 
-const MainHeader = (props) => {
+const MainHeader = () => {
  return (
   <header className="main-header clearfix" role="header">
    <div className="logo">
@@ -53,7 +53,7 @@ const MainHeader = (props) => {
  );
 }
 
-const Navi = (props) => {
+const Navi = () => {
  return (
   <nav id="menu" className="main-nav" role="navigation">
    <ul className="main-menu">
@@ -119,25 +119,5 @@ const SubMenu = (props) => {
   </ul>
  );
 }
-/*
-const listContainer = (props) => {
- return (
-  <div>
-   <li><a href="#section1">Home</a></li>
-   <li class="has-submenu">
-    <a href="#section2">About Us</a>
-    <ul class="sub-menu">
-     <li><a href="#section2">Who we are?</a></li>
-     <li><a href="#section3">What we do?</a></li>
-     <li><a href="#section3">How it works?</a></li>
-     <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
-    </ul>
-   </li>
-   <li><a href="#section3">Courses</a></li>
-   <li><a href="#section4">Contact</a></li>
-   <li><a href="https://templatemo.com" class="external">External</a></li>
-  </div>
- );
-}
-*/
+
 export default MainHeader;
