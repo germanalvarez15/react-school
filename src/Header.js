@@ -1,43 +1,45 @@
 import React from 'react';
-
-let itemsHeader = {
- 'home': {
-  'text': 'Home',
-  'link': '#section1'
+/*To practice array rendering I create and then map an
+array of items
+*/
+let itemsHeader = [
+ {
+  text: 'Home',
+  link: '#section1'
  },
- 'about': {
-  'text': 'About Us',
-  'link': '#section2',
-  'subMenu': {
-   'who': {
-    'text': 'Who we are?',
-    'link': '#section2',
+ {
+  text: 'About Us',
+  link: '#section2',
+  subMenu: [
+   {
+    text: 'Who we are?',
+    link: '#section2',
    },
-   'what': {
-    'text': 'What we do?',
-    'link': '#section3',
+   {
+    text: 'What we do?',
+    link: '#section3',
    },
-   'how': {
-    'text': 'How it works?',
-    'link': '#section3',
+   {
+    text: 'How it works?',
+    link: '#section3',
    },
-   'external': {
-    'text': 'External URL',
-    'link': 'https://templatemo.com/about',
-    'rel': 'sponsored',
-    'class': 'external'
+   {
+    text: 'External URL',
+    link: 'https://templatemo.com/about',
+    rel: 'sponsored',
+    class: 'external'
    }
-  }
+  ]
  },
- 'courses': {
-  'text': 'Courses',
-  'link': '#section4'
+ {
+  text: 'Courses',
+  link: '#section4'
  },
- 'contact': {
-  'text': 'Contact',
-  'link': '#section6'
+ {
+  text: 'Contact',
+  link: '#section6'
  },
-}
+];
 
 const MainHeader = (props) => {
  return (
@@ -61,101 +63,58 @@ const Navi = (props) => {
  );
 }
 
-
-
-/*
-let listItems = [];
-Object.keys(itemsHeader).forEach(key => {
- let element;
- if (itemsHeader[key].subMenu) {
-  element = React.createElement(
-   'li',
-   {},
-   React.createElement(
-    'a',
-    { href: itemsHeader[key].link },
-    itemsHeader[key].text
-   )
-  );
- } else {
-
- }
-
- listItems.push(
-
-  <li><a href={itemsHeader[key].link}>{itemsHeader[key].text}</a></li>
- );
-});
-*/
-
 const HeaderMenu = () => {
- let listItems = [];
- Object.keys(itemsHeader).forEach(key => {
-  let element;
-  if (itemsHeader[key].subMenu) {
-   element = React.createElement(
-    'li',
-    {
-     className: 'has-submenu'
-    },
-    [
+ return (
+  itemsHeader.map(item => (
+   item.subMenu ?
+    React.createElement(
+     'li',
+     {
+      className: 'has-submenu'
+     },
+     [
+      React.createElement(
+       'a',
+       { href: item.link },
+       item.text
+      ),
+      <SubMenu subItems={item.subMenu} />
+     ]
+    )
+    :
+    React.createElement(
+     'li',
+     {
+     },
      React.createElement(
       'a',
-      { href: itemsHeader[key].link },
-      itemsHeader[key].text
+      { href: item.link },
+      item.text
      ),
-     <SubMenu subItems={itemsHeader[key].subMenu} />
-    ]
-   );
-  } else {
-   element = React.createElement(
-    'li',
-    {
-    },
-    React.createElement(
-     'a',
-     { href: itemsHeader[key].link },
-     itemsHeader[key].text
-    ),
-
-   );
-  }
-  listItems.push(
-   element
-  );
-
- });
- return (
-  <ul className="main-menu">
-   {
-    listItems
-   }
-  </ul>
+    )
+  ))
  );
 }
 
 const SubMenu = (props) => {
- let subItems = [];
- Object.keys(props.subItems).forEach(key => {
-  let element = React.createElement(
-   'li',
-   {},
-   React.createElement(
-    'a',
-    {
-     href: props.subItems[key].link,
-     className: props.subItems[key].class ? props.subItems[key].class : null,
-     rel: props.subItems[key].rel ? props.subItems[key].rel : null,
-    },
-    props.subItems[key].text
-   )
-  );
-  subItems.push(element);
- });
  return (
   <ul className="sub-menu">
    {
-    subItems
+    props.subItems.map(subItem => (
+     React.createElement(
+      'li',
+      {},
+      React.createElement(
+       'a',
+       {
+        href: subItem.link,
+        className: subItem.class ? subItem.class : null,
+        rel: subItem.rel ? subItem.rel : null,
+       },
+       subItem.text
+      )
+     )
+    ))
    }
   </ul>
  );
