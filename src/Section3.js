@@ -1,5 +1,5 @@
 import React from 'react';
-
+//Stateful components
 class MainContainer extends React.Component {
  constructor(props) {
   super(props);
@@ -52,6 +52,33 @@ class MainContainer extends React.Component {
   )
  };
 }
+//Stateless components
+const SubSections = () => {
+ return (
+  <section className='tabs-content'>
+   {articlesItems.map(article => (
+    article.isActive ? <Article article={article} /> : null
+   ))}
+  </section>
+ );
+}
+const Article = (props) => {
+ return (
+  <article id={props.article.id}>
+   <div className="row">
+    <div className="col-md-6">
+     <img src={props.article.imgSrc} alt="" />
+    </div>
+    <div className="col-md-6">
+     <h4>{props.article.title}</h4>
+     <p dangerouslySetInnerHTML={{ __html: props.article.description }} />
+     {props.article.description2 ? <p dangerouslySetInnerHTML={{ __html: props.article.description2 }} /> : null}
+    </div>
+   </div>
+  </article>
+ )
+}
+//Methods and others
 let articlesItems = [
  {
   id: 'tabs-1',
@@ -87,32 +114,6 @@ function changeActiveArticle(value) {
    article.isActive = false;
   }
  });
-}
-const SubSections = () => {
- return (
-  <section className='tabs-content'>
-   {articlesItems.map(article => (
-    article.isActive ? <Article article={article} /> : null
-   ))}
-  </section>
- );
-}
-
-const Article = (props) => {
- return (
-  <article id={props.article.id}>
-   <div className="row">
-    <div className="col-md-6">
-     <img src={props.article.imgSrc} alt="" />
-    </div>
-    <div className="col-md-6">
-     <h4>{props.article.title}</h4>
-     <p dangerouslySetInnerHTML={{ __html: props.article.description }} />
-     {props.article.description2 ? <p dangerouslySetInnerHTML={{ __html: props.article.description2 }} /> : null}
-    </div>
-   </div>
-  </article>
- )
 }
 
 export default MainContainer;
