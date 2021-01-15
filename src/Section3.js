@@ -4,7 +4,7 @@ class MainContainer extends React.Component {
  constructor(props) {
   super(props);
   this.handleClick = this.handleClick.bind(this);
-  this.state = { activeArticle: 0 };
+  this.state = { activeArticle: 1 };
  }
  handleClick(value) {
   this.setState({ activeArticle: value });
@@ -107,8 +107,8 @@ const Article = (props) => {
     </div>
     <div className="col-md-6">
      <h4>{props.article.title}</h4>
-     <p>{props.article.description}</p>
-     {props.article.description2 ? <p>{props.article.description2}</p> : null}
+     <p dangerouslySetInnerHTML={{ __html: props.article.description }} />
+     {props.article.description2 ? <p dangerouslySetInnerHTML={{ __html: props.article.description2 }} /> : null}
     </div>
    </div>
   </article>
